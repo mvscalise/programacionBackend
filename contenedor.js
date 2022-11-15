@@ -88,23 +88,4 @@ class Contenedor {
 
 }
 
-const productosContenedor = new Contenedor ('archivo_desafio.json')
-
-const producto = {
-    title: 'Coca Cola',
-    price: 10,
-    thumbnail: 'cocacola.png'
-}
-
-const producto2 = {
-    title: 'Fanta',
-    price: 12,
-    thumbnail: 'fanta.png'
-}
-
-
-productosContenedor.save(producto)
-productosContenedor.getById(1)
-productosContenedor.getAll()
-productosContenedor.deleteById(3)
-productosContenedor.deleteAll()
+module.exports = { Contenedor }
