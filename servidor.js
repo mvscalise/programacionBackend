@@ -16,16 +16,14 @@ app.get('/', (req, res) => {
     res.send('Bienvenido!')
 });
 
-app.get('/productos', async (req, res) => {
+app.get('/productos', (req, res) => {
     const allProducts = contenedor.getAll()
     res.json(allProducts)
 });
 
 app.get('/productoRandom', async (req, res) => {
     const allProducts = contenedor.getAll()
-    console.log(contenedor)
     const max = allProducts.length
-    
     const randomNumber = generateRandomNumber(1, max);
     const randomProduct = await contenedor.getById(randomNumber)
 

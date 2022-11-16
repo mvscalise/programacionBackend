@@ -50,7 +50,9 @@ class Contenedor {
 
     getAll(){
         const arr = this.getData()
-        console.log(arr)
+        const parseData = JSON.parse(arr)
+        console.log(parseData)
+        return parseData
     }
 
     async deleteById(id){
