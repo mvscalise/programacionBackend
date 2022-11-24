@@ -15,15 +15,14 @@ class Contenedor {
             const data = this.getData()
             const parseData = JSON.parse(data)
             obj.id = parseData.length +1
-            console.log(parseData)
-            console.log(obj)
             parseData.push(obj)
-            fs.promises.writeFile(this.filename, `${JSON.stringify(parseData)}`)
+            console.log(parseData)
+            return fs.promises.writeFile(this.filename, `${JSON.stringify(parseData)}`)
                 .then(res=>console.log('Se ha agregado el producto'))
                 .catch(err=>console.log(err)) 
         } else {
             obj.id = 1
-            fs.promises.writeFile(this.filename, `[${JSON.stringify(obj)}]`)
+            return fs.promises.writeFile(this.filename, `[${JSON.stringify(obj)}]`)
             .then(res=>console.log('Se ha agregado el producto'))
             .catch(err=>console.log(err))
         }
@@ -31,17 +30,11 @@ class Contenedor {
     }
 
     async getById(id) {
+        id = Number(id)
         try {
-            const data = this.getData()
+            const data = await this.getData()
             const parseData = JSON.parse(data)
-            const obj = parseData.find((e) => e.id === id)
-    
-                if (obj){
-                    console.log(`El producto para el id ${id} es: ${obj.title}`)
-                } else {
-                    console.log(`No existe producto con el id: ${id}`);
-                    return null;
-                }
+            return parseData.find((e) => e.id === id)
     
         } catch (err) {
             console.log(`No econtramos el producto con el id ${id} -- Error ${err}`);
