@@ -23,10 +23,14 @@ productosRouter.get('/:id', async (req, res) => {
 })
 
 productosRouter.post('/', (req, res) =>{
-    const {body} = req
-    const newProduct = contenedor.save(body)
+    const product = req.body
+    const allProducts = contenedor.getAll()
+    const productos = JSON.parse/allProducts
+    product.id = productos.length + 1;
+    productos.push(product)
+    
 
-    return res.send(`Producto agregado correctamente: ${newProduct}`)
+    return res.send(`Producto agregado correctamente: ${product}`)
 })
 
 module.exports = productosRouter
