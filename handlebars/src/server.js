@@ -10,15 +10,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 
-app.set('views', 'views');
-app.set('view engine', 'hbs');
-
 app.engine('hbs', engine({
     extname: '.hbs',
     defaultLayout: 'index.hbs',
-    layoutsDir: __dirname + '/views/layouts',
-    partialsDir: __dirname + '/views/partials'
+    layoutsDir: `${__dirname}/views/layouts`,
+    partialsDir: `${__dirname}/views/partials`
 }))
+
+app.set('views', './views');
+app.set('view engine', 'hbs');
 
 app.get('/productos', async(req, res) => {
     const productos = await contenedor.getAll();
